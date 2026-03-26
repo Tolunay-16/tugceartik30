@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>35 Yaş – Resmen Efsane</title>
+<style>
+  body{
+    margin:0; font-family:system-ui, Arial;
+    background:linear-gradient(135deg,#111827,#5d2274,#0b1020);
+    color:#e5e7eb; min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center;
+  }
+  .card{
+    width:min(720px,92%); background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.14);
+    border-radius:22px; padding:26px 22px;
+    box-shadow:0 18px 50px rgba(0,0,0,.45);
+    backdrop-filter: blur(8px);
+  }
+  h1{margin:0 0 10px; font-size:1.6rem;}
+  .sub{opacity:.9; line-height:1.5}
+  .bigNumber{font-size:4.2rem; font-weight:900; margin:10px 0; letter-spacing:2px;}
+  .btnRow{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:14px;}
+  button{
+    padding:12px 16px; border:none; border-radius:14px;
+    background:#ff4d6d; color:rgb(255, 255, 255); font-weight:800; cursor:pointer;
+  }
+  button.secondary{background:#ff4d6d;}
+  button.ghost{background:transparent; border:1px solid rgba(255,255,255,0.18); color:#e5e7eb;}
+  button:active{transform:translateY(1px)}
+  .box{
+    margin-top:16px; background:rgba(0,0,0,0.25);
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:16px; padding:14px;
+  }
+  .quote{font-size:1.15rem; line-height:1.55}
+  .tiny{opacity:.8; font-size:.92rem}
+  .hidden{display:none}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h1>🎂 Artık 30 yaşına hazır mısın?…</h1>
+  <p class="sub"> Buna hazır mısın?</p>
+
+  <div id="pre">
+    <div class="btnRow">
+      <button onclick="reveal()">Hazırım 😌</button>
+      <button class="ghost" onclick="reveal()">Bilmiyorum 🙄</button>
+    </div>
+    <p class="tiny" style="margin-top:12px;">Sunan ve tasarlayan tabii ki Tolu😎</p>
+  </div>
+
+  <div id="main" class="hidden">
+    <div class="bigNumber">30</div>
+    <h1>İYİ Kİ DOĞDUN TUĞÇEEE 🥳🥳🥳🥳🥳</h1>
+    <p class="sub">
+      30uncu yaş günü kutlu olsun 20 senelik Arkadaşım  
+      Nice mutlu senelere, Yaşlar sadece sayılar 😎  
+    </p>
+
+    <div class="box">
+      <div class="quote" id="quote">“Geriye bıraktığın yol değil, önündeki yol önemli.”</div>
+      <div class="btnRow">
+        <button class="secondary" onclick="newQuote()">Bir tane daha laf at 😏</button>
+        <button class="ghost" onclick="confetti()">Konfeti at</button>
+      </div>
+      <p class="tiny" style="margin-top:10px;">Tatlı bir şaka modu: aktif ✅</p>
+    </div>
+
+    <div class="box">
+      <h2 style="margin:0 0 8px; font-size:1.1rem;">🎭 Bahane Üretici (30 yaş özel)</h2>
+      <div class="quote" id="excuse">“Bugün olmaz. Ben 30’im ve seçiciyim.”</div>
+      <div class="btnRow">
+        <button onclick="newExcuse()">Yeni bahane üret</button>
+        <button class="ghost" onclick="copyText()">Kopyala</button>
+      </div>
+      <p class="tiny" id="copied" style="margin-top:8px;"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+const quotes = [
+  "“30 yaş: Artık her şeyi biliyorum ama yine de Google’a soruyorum30 yaşındasın ama ruhun hâlâ WiFi gibi: her yerde.”",
+  "“30’dayım; heyecan var ama garantisi yok.”",
+  "“Gençlik gitti demeyelim, premium sürüme geçtik.”",
+  "“30 yaş: Az insan, net tavır, bol kahve.”",
+  "“Artık ‘Ben bilirim’ deme yaşına resmen girdin.”",
+  "“Hâlâ genç hissediyorum ama belim farklı düşünüyor.”",
+  "“Artık cool olmak için uğraşmıyorum, otomatik.”",
+  "“Geriye bıraktığın yol değil, önündeki yol önemli.”",
+  "“Genç görünmek değil, iyi görünmek önemli. Sen ikisini de yapıyorsun.”",
+  "30: Kaliteyi seçme yaşı",
+  "“Tecrübe arttı, tolerans azaldı.”"
+];
+
+const excuses = [
+  "“30 yaş: Drama kapalı, huzura açık.”",
+  "“Enerjim var ama harcamam.”",
+  "“30’dan sonra ‘olur’ değil, ‘değer mi?’ dönemi.”",
+  "“Olabilir… ama istemiyorum.”",
+  "“Benim yaşımda insanlar böyle şeyler yapmaz.”",
+  "“Yapabilirim ama prensip meselesi.”",
+  "“Gençlik cesaret, 30 akıl; ikisi birlikte tehlikeliyim.”",
+  "“Artık kimseyi etkilemeye çalışmıyorum, kendim yetiyorum.”",
+  "“Yaş aldım, ağırlık kazandım… karizma olarak.”"
+];
+
+function reveal(){
+  document.getElementById("pre").classList.add("hidden");
+  document.getElementById("main").classList.remove("hidden");
+  confetti();
+  newQuote();
+}
+
+function newQuote(){
+  document.getElementById("quote").textContent = quotes[Math.floor(Math.random()*quotes.length)];
+}
+
+function newExcuse(){
+  document.getElementById("excuse").textContent = excuses[Math.floor(Math.random()*excuses.length)];
+  document.getElementById("copied").textContent = "";
+}
+
+function confetti(){
+  for(let i=0;i<90;i++){
+    const s = document.createElement("span");
+    s.textContent = ["🎉","✨","💖","🥂","🎈","😌","😈"][Math.floor(Math.random()*7)];
+    s.style.position="fixed";
+    s.style.left=(Math.random()*100)+"vw";
+    s.style.top="-12px";
+    s.style.fontSize=(Math.random()*22+14)+"px";
+    s.style.transition="transform 2.2s linear, opacity 2.2s linear";
+    document.body.appendChild(s);
+    requestAnimationFrame(()=>{
+      s.style.transform = `translateY(110vh) rotate(${Math.random()*720}deg)`;
+      s.style.opacity = "0";
+    });
+    setTimeout(()=>s.remove(),2200);
+  }
+}
+
+async function copyText(){
+  const text = document.getElementById("excuse").textContent.replace(/^“|”$/g,"");
+  try{
+    await navigator.clipboard.writeText(text);
+    document.getElementById("copied").textContent = "✅ Kopyalandı. Sorumluluk kabul edilmez.";
+  }catch(e){
+    document.getElementById("copied").textContent = "😅 Otomatik kopyalama olmadı, manuel seç.";
+  }
+}
+</script>
+
+</body>
+</html>
